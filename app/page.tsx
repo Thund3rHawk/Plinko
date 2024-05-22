@@ -1,7 +1,10 @@
-import Image from "next/image";
+import GameCanvas from "@/components/gameCanvas";
 
 export default function Home() {
   return (
-    <h1>Hello World</h1>
+    <>
+      <h1 className="text-center text-5xl">Plinko</h1>
+      <GameCanvas/>
+    </>
   );
 }
