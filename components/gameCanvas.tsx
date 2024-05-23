@@ -1,4 +1,5 @@
 "use client"
+import { Ball } from '@/game/classes/ball';
 import React, { useEffect, useRef } from 'react'
 
 const Game = () => {
@@ -9,9 +10,9 @@ const Game = () => {
         const ctx = canvas?.getContext('2d');
         if (ctx) ctx.fillStyle = '#000';
         ctx?.fillRect (0,0,800, 800);  
-        
-        
-        function obstacles(){
+        const obstacle = [];
+        const gravity = 9.8;
+        function draw(){
             if (ctx){
                 const row = 16;
                 ctx.fillStyle = 'white';
@@ -31,18 +32,23 @@ const Game = () => {
 
         function sink(){
             if (ctx){
-                const height = 570;
-                ctx.fillStyle = 'red';
+                const height = 560;
+                ctx.fillStyle = 'green';
                 for (let i=1;i<=15;i++){
-                    const xPos = 400 - 40*(i-14/2);
+                    const xPos = 395 - 40*(i-14/2);
                     ctx.fillRect (xPos, height, 26, 30);
                 }        
             } 
         }
 
-        obstacles ();
-        sink();
+        function update(){
 
+        }
+
+
+        draw ();
+        sink();
+        update();
 
     },[]);
 
@@ -51,8 +57,8 @@ const Game = () => {
     };
   return (
     <div className='flex justify-between'>
-        <canvas ref = {canvasRef} width= {800} height = {800}></canvas>
         <button onClick={addBall} className='bg-green-600 px-10 text-black h-10 mx-4'>Add Ball</button>
+        <canvas ref = {canvasRef} width= {800} height = {800}></canvas>
     </div>
   )
 }
